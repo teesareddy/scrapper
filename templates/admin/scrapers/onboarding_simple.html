@@ -1,0 +1,134 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n admin_urls static %}
+
+{% block title %}🚀 Scraper Onboarding - Simple{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        .onboarding-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8fafc;
+            min-height: calc(100vh - 120px);
+        }
+        
+        .onboarding-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            font-size: 0.875rem;
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="onboarding-container">
+    <!-- Header -->
+    <div class="onboarding-header">
+        <h1>🚀 Scraper Onboarding - Simple</h1>
+        <p>Set up a new scraper with all configurations in one place</p>
+    </div>
+
+    <div style="background: white; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h2>📝 Basic Scraper Information</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" for="scraper_name">Scraper Name *</label>
+                    <input type="text" id="scraper_name" name="scraper_name" class="form-input" required
+                           placeholder="e.g., washington_pavilion_scraper">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="display_name">Display Name *</label>
+                    <input type="text" id="display_name" name="display_name" class="form-input" required
+                           placeholder="e.g., Washington Pavilion Theatre Scraper">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="target_website">Target Website *</label>
+                    <input type="url" id="target_website" name="target_website" class="form-input" required
+                           placeholder="https://example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="status">Status</label>
+                    <select id="status" name="status" class="form-select">
+                        {% for value, label in status_choices %}
+                            <option value="{{ value }}" {% if value == 'active' %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="priority">Priority</label>
+                    <select id="priority" name="priority" class="form-select">
+                        {% for value, label in priority_choices %}
+                            <option value="{{ value }}" {% if value == 'normal' %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="browser_engine">Browser Engine</label>
+                    <select id="browser_engine" name="browser_engine" class="form-select">
+                        {% for value, label in browser_engines %}
+                            <option value="{{ value }}" {% if value == 'playwright' %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <button type="submit" class="btn btn-success">🚀 Create Scraper</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,1103 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n admin_urls static %}
+
+{% block title %}🚀 Scraper Onboarding - Add New Scraper{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        .onboarding-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8fafc;
+            min-height: calc(100vh - 120px);
+        }
+        
+        .onboarding-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+        }
+        
+        .onboarding-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .onboarding-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+        
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .progress-step.active {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        
+        .progress-step.completed {
+            color: #10b981;
+        }
+        
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: #e5e7eb;
+            z-index: -1;
+        }
+        
+        .progress-step:last-child::after {
+            display: none;
+        }
+        
+        .progress-step.completed::after {
+            background: #10b981;
+        }
+        
+        .step-content {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .help-text {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+        
+        .proxy-option {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .proxy-option.selected {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .proxy-option:hover {
+            border-color: #9ca3af;
+        }
+        
+        .proxy-test-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        
+        .proxy-test-btn:hover {
+            background: #d97706;
+        }
+        
+        .proxy-test-result {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+        
+        .proxy-test-result.success {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+        
+        .proxy-test-result.error {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 0.875rem;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: white;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .schedule-type-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .schedule-option {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .schedule-option.selected {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .schedule-option:hover {
+            border-color: #9ca3af;
+        }
+        
+        .optimization-rules {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 1rem;
+        }
+        
+        .rule-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .rule-item:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-card {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .summary-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+        
+        .summary-content {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="onboarding-container">
+    <!-- Header -->
+    <div class="onboarding-header">
+        <h1 class="onboarding-title">🚀 Scraper Onboarding</h1>
+        <p class="onboarding-subtitle">Set up a new scraper with all configurations in one place</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-step active" data-step="1">
+            <div>📝 Basic Info</div>
+        </div>
+        <div class="progress-step" data-step="2">
+            <div>🔧 Configuration</div>
+        </div>
+        <div class="progress-step" data-step="3">
+            <div>🌐 Proxy Setup</div>
+        </div>
+        <div class="progress-step" data-step="4">
+            <div>⏰ Scheduling</div>
+        </div>
+        <div class="progress-step" data-step="5">
+            <div>✅ Review</div>
+        </div>
+    </div>
+
+    <form method="post" id="onboarding-form">
+        {% csrf_token %}
+        
+        <!-- Step 1: Basic Information -->
+        <div class="step-content active" data-step="1">
+            <h2 class="step-title">📝 Basic Scraper Information</h2>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" for="scraper_name">Scraper Name *</label>
+                    <input type="text" id="scraper_name" name="scraper_name" class="form-input" required
+                           placeholder="e.g., washington_pavilion_scraper">
+                    <div class="help-text">Unique identifier for this scraper (lowercase, underscores only)</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="display_name">Display Name *</label>
+                    <input type="text" id="display_name" name="display_name" class="form-input" required
+                           placeholder="e.g., Washington Pavilion Theatre Scraper">
+                    <div class="help-text">Human-readable name for the scraper</div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea id="description" name="description" class="form-textarea"
+                              placeholder="Describe what this scraper does, what data it collects, etc."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="target_website">Target Website *</label>
+                    <input type="url" id="target_website" name="target_website" class="form-input" required
+                           placeholder="https://example.com">
+                    <div class="help-text">Main website this scraper will target</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="target_domains">Additional Domains</label>
+                    <input type="text" id="target_domains" name="target_domains" class="form-input"
+                           placeholder="subdomain.example.com, api.example.com">
+                    <div class="help-text">Comma-separated list of additional domains (optional)</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="status">Status</label>
+                    <select id="status" name="status" class="form-select">
+                        {% for value, label in status_choices %}
+                            <option value="{{ value }}" {% if value == 'active' %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="priority">Priority</label>
+                    <select id="priority" name="priority" class="form-select">
+                        {% for value, label in priority_choices %}
+                            <option value="{{ value }}" {% if value == 'normal' %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Technical Configuration -->
+        <div class="step-content" data-step="2">
+            <h2 class="step-title">🔧 Technical Configuration</h2>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" for="browser_engine">Browser Engine</label>
+                    <select id="browser_engine" name="browser_engine" class="form-select">
+                        {% for value, label in browser_engines %}
+                            <option value="{{ value }}" {% if value == 'playwright' %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="timeout_seconds">Timeout (seconds)</label>
+                    <input type="number" id="timeout_seconds" name="timeout_seconds" class="form-input" 
+                           value="30" min="5" max="300">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="retry_attempts">Retry Attempts</label>
+                    <input type="number" id="retry_attempts" name="retry_attempts" class="form-input" 
+                           value="3" min="0" max="10">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="max_concurrent_jobs">Max Concurrent Jobs</label>
+                    <input type="number" id="max_concurrent_jobs" name="max_concurrent_jobs" class="form-input" 
+                           value="1" min="1" max="10">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="log_level">Log Level</label>
+                    <select id="log_level" name="log_level" class="form-select">
+                        <option value="DEBUG">Debug</option>
+                        <option value="INFO" selected>Info</option>
+                        <option value="WARNING">Warning</option>
+                        <option value="ERROR">Error</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-checkbox">
+                    <input type="checkbox" id="headless_mode" name="headless_mode" checked>
+                    <label for="headless_mode">Run in headless mode</label>
+                </div>
+                
+                <div class="form-checkbox">
+                    <input type="checkbox" id="enable_screenshots" name="enable_screenshots">
+                    <label for="enable_screenshots">Enable screenshots for debugging</label>
+                </div>
+                
+                <div class="form-checkbox">
+                    <input type="checkbox" id="enable_detailed_logging" name="enable_detailed_logging">
+                    <label for="enable_detailed_logging">Enable detailed logging</label>
+                </div>
+                
+                <div class="form-checkbox">
+                    <input type="checkbox" id="can_be_scheduled" name="can_be_scheduled" checked>
+                    <label for="can_be_scheduled">Allow scheduling</label>
+                </div>
+            </div>
+            
+            <!-- Captcha Configuration -->
+            <div class="form-group">
+                <div class="form-checkbox">
+                    <input type="checkbox" id="captcha_required" name="captcha_required">
+                    <label for="captcha_required">Requires captcha solving</label>
+                </div>
+                
+                <div id="captcha_config" class="hidden">
+                    <label class="form-label" for="captcha_type">Captcha Type</label>
+                    <select id="captcha_type" name="captcha_type" class="form-select">
+                        <option value="">Select captcha type...</option>
+                        {% for captcha in captcha_types %}
+                            <option value="{{ captcha.captcha_type_id }}">{{ captcha.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Optimization Rules -->
+            <div class="form-group full-width">
+                <label class="form-label">Optimization Rules</label>
+                <div class="optimization-rules">
+                    {% for rule in optimization_rules %}
+                        <div class="rule-item">
+                            <input type="checkbox" id="rule_{{ rule.optimization_rule_id }}" 
+                                   name="optimization_rules" value="{{ rule.optimization_rule_id }}">
+                            <label for="rule_{{ rule.optimization_rule_id }}">
+                                <strong>{{ rule.name }}</strong> ({{ rule.get_rule_type_display }})
+                                {% if rule.description %}<br><small>{{ rule.description }}</small>{% endif %}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Proxy Configuration -->
+        <div class="step-content" data-step="3">
+            <h2 class="step-title">🌐 Proxy Configuration</h2>
+            
+            <div class="form-group">
+                <label class="form-label">Proxy Setup Option</label>
+                
+                <div class="proxy-option" data-option="none">
+                    <input type="radio" name="proxy_option" value="none" id="proxy_none" checked>
+                    <label for="proxy_none">
+                        <strong>🚫 No Proxy</strong><br>
+                        <small>Run scraper without proxy (not recommended for production)</small>
+                    </label>
+                </div>
+                
+                <div class="proxy-option" data-option="existing">
+                    <input type="radio" name="proxy_option" value="existing" id="proxy_existing">
+                    <label for="proxy_existing">
+                        <strong>🔗 Use Existing Proxy</strong><br>
+                        <small>Select from already configured proxy configurations</small>
+                    </label>
+                    
+                    <div id="existing_proxy_config" class="hidden">
+                        <label class="form-label" for="existing_proxy">Select Proxy Configuration</label>
+                        <select id="existing_proxy" name="existing_proxy" class="form-select">
+                            <option value="">Choose existing proxy...</option>
+                            {% for proxy in proxy_configurations %}
+                                <option value="{{ proxy.config_id }}">
+                                    {{ proxy.name }} ({{ proxy.get_proxy_type_display }}) - {{ proxy.host }}:{{ proxy.port }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="proxy-option" data-option="new">
+                    <input type="radio" name="proxy_option" value="new" id="proxy_new">
+                    <label for="proxy_new">
+                        <strong>➕ Create New Proxy</strong><br>
+                        <small>Configure a new proxy specifically for this scraper</small>
+                    </label>
+                    
+                    <div id="new_proxy_config" class="hidden">
+                        <input type="hidden" name="create_new_proxy" value="">
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="proxy_name">Proxy Name *</label>
+                                <input type="text" id="proxy_name" name="proxy_name" class="form-input"
+                                       placeholder="e.g., washington_pavilion_proxy">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="proxy_provider">Provider</label>
+                                <select id="proxy_provider" name="proxy_provider" class="form-select">
+                                    <option value="">Select provider...</option>
+                                    {% for provider in proxy_providers %}
+                                        <option value="{{ provider.provider_id }}">{{ provider.display_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="proxy_type">Proxy Type</label>
+                                <select id="proxy_type" name="proxy_type" class="form-select">
+                                    {% for value, label in proxy_types %}
+                                        <option value="{{ value }}">{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="proxy_protocol">Protocol</label>
+                                <select id="proxy_protocol" name="proxy_protocol" class="form-select">
+                                    {% for value, label in protocols %}
+                                        <option value="{{ value }}">{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="proxy_host">Host/IP *</label>
+                                <input type="text" id="proxy_host" name="proxy_host" class="form-input"
+                                       placeholder="proxy.example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="proxy_port">Port *</label>
+                                <input type="number" id="proxy_port" name="proxy_port" class="form-input"
+                                       placeholder="8080" min="1" max="65535">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="proxy_username">Username</label>
+                                <input type="text" id="proxy_username" name="proxy_username" class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="proxy_password">Password</label>
+                                <input type="password" id="proxy_password" name="proxy_password" class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="proxy_country">Country Code</label>
+                                <input type="text" id="proxy_country" name="proxy_country" class="form-input"
+                                       placeholder="US" maxlength="2">
+                                <div class="help-text">ISO 2-letter country code (optional)</div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label class="form-label" for="proxy_description">Description</label>
+                                <textarea id="proxy_description" name="proxy_description" class="form-textarea"
+                                          placeholder="Optional description for this proxy configuration"></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="proxy-test-btn" id="test_proxy_btn">
+                            🧪 Test Proxy Connection
+                        </button>
+                        <div id="proxy_test_result" class="proxy-test-result hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Scheduling -->
+        <div class="step-content" data-step="4">
+            <h2 class="step-title">⏰ Scheduling Configuration</h2>
+            
+            <div class="form-checkbox">
+                <input type="checkbox" id="create_schedule" name="create_schedule">
+                <label for="create_schedule">Create automatic schedule for this scraper</label>
+            </div>
+            
+            <div id="schedule_config" class="hidden">
+                <div class="form-group">
+                    <label class="form-label" for="schedule_name">Schedule Name</label>
+                    <input type="text" id="schedule_name" name="schedule_name" class="form-input"
+                           placeholder="e.g., Daily Washington Pavilion Scrape">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Schedule Type</label>
+                    <div class="schedule-type-options">
+                        {% for value, label in schedule_types %}
+                            {% if value != 'manual' %}
+                                <div class="schedule-option" data-schedule-type="{{ value }}">
+                                    <input type="radio" name="schedule_type" value="{{ value }}" id="schedule_{{ value }}"
+                                           {% if value == 'interval' %}checked{% endif %}>
+                                    <label for="schedule_{{ value }}">
+                                        <strong>{{ label }}</strong>
+                                    </label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div id="interval_config">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="interval_hours">Hours</label>
+                            <input type="number" id="interval_hours" name="interval_hours" class="form-input"
+                                   value="24" min="0" max="168">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="interval_minutes">Minutes</label>
+                            <input type="number" id="interval_minutes" name="interval_minutes" class="form-input"
+                                   value="0" min="0" max="59">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="cron_config" class="hidden">
+                    <div class="form-group">
+                        <label class="form-label" for="cron_expression">Cron Expression</label>
+                        <input type="text" id="cron_expression" name="cron_expression" class="form-input"
+                               placeholder="0 9 * * *">
+                        <div class="help-text">Example: "0 9 * * *" runs daily at 9 AM</div>
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label" for="urls_to_scrape">URLs to Scrape</label>
+                    <textarea id="urls_to_scrape" name="urls_to_scrape" class="form-textarea"
+                              placeholder="Enter URLs to scrape, one per line or comma-separated"></textarea>
+                    <div class="help-text">Leave empty to use the target website URL</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Review and Submit -->
+        <div class="step-content" data-step="5">
+            <h2 class="step-title">✅ Review Configuration</h2>
+            
+            <div id="configuration_summary">
+                <!-- Summary will be populated by JavaScript -->
+            </div>
+            
+            <div class="form-group">
+                <div class="form-checkbox">
+                    <input type="checkbox" id="test_scraper" name="test_scraper">
+                    <label for="test_scraper">🧪 Test scraper after creation</label>
+                </div>
+                
+                <div id="test_config" class="hidden">
+                    <label class="form-label" for="test_url">Test URL</label>
+                    <input type="url" id="test_url" name="test_url" class="form-input"
+                           placeholder="URL to test the scraper with">
+                    <div class="help-text">Leave empty to use the target website URL</div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Navigation -->
+    <div class="navigation-buttons">
+        <button type="button" class="btn btn-secondary" id="prev_btn" disabled>
+            ← Previous
+        </button>
+        
+        <div>
+            <button type="button" class="btn btn-primary" id="next_btn">
+                Next →
+            </button>
+            <button type="submit" class="btn btn-success hidden" id="submit_btn" form="onboarding-form">
+                🚀 Create Scraper
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let currentStep = 1;
+    const totalSteps = 5;
+    
+    // Step navigation
+    function showStep(step) {
+        // Hide all steps
+        document.querySelectorAll('.step-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        // Show current step
+        document.querySelector(`[data-step="${step}"]`).classList.add('active');
+        
+        // Update progress bar
+        document.querySelectorAll('.progress-step').forEach((stepEl, index) => {
+            stepEl.classList.remove('active', 'completed');
+            if (index + 1 < step) {
+                stepEl.classList.add('completed');
+            } else if (index + 1 === step) {
+                stepEl.classList.add('active');
+            }
+        });
+        
+        // Update navigation buttons
+        document.getElementById('prev_btn').disabled = step === 1;
+        
+        if (step === totalSteps) {
+            document.getElementById('next_btn').classList.add('hidden');
+            document.getElementById('submit_btn').classList.remove('hidden');
+        } else {
+            document.getElementById('next_btn').classList.remove('hidden');
+            document.getElementById('submit_btn').classList.add('hidden');
+        }
+        
+        // Update summary on last step
+        if (step === totalSteps) {
+            updateSummary();
+        }
+    }
+    
+    // Next button
+    document.getElementById('next_btn').addEventListener('click', function() {
+        if (validateStep(currentStep)) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    });
+    
+    // Previous button
+    document.getElementById('prev_btn').addEventListener('click', function() {
+        currentStep--;
+        showStep(currentStep);
+    });
+    
+    // Progress step clicks
+    document.querySelectorAll('.progress-step').forEach((step, index) => {
+        step.addEventListener('click', function() {
+            const targetStep = index + 1;
+            if (targetStep <= currentStep || validateStepsUpTo(targetStep - 1)) {
+                currentStep = targetStep;
+                showStep(currentStep);
+            }
+        });
+    });
+    
+    // Proxy option handling
+    document.querySelectorAll('input[name="proxy_option"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Hide all proxy configs
+            document.getElementById('existing_proxy_config').classList.add('hidden');
+            document.getElementById('new_proxy_config').classList.add('hidden');
+            
+            // Show selected config
+            if (this.value === 'existing') {
+                document.getElementById('existing_proxy_config').classList.remove('hidden');
+            } else if (this.value === 'new') {
+                document.getElementById('new_proxy_config').classList.remove('hidden');
+                document.querySelector('input[name="create_new_proxy"]').value = 'on';
+            } else {
+                document.querySelector('input[name="create_new_proxy"]').value = '';
+            }
+            
+            // Update proxy option styling
+            document.querySelectorAll('.proxy-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            this.closest('.proxy-option').classList.add('selected');
+        });
+    });
+    
+    // Schedule handling
+    document.getElementById('create_schedule').addEventListener('change', function() {
+        const scheduleConfig = document.getElementById('schedule_config');
+        if (this.checked) {
+            scheduleConfig.classList.remove('hidden');
+        } else {
+            scheduleConfig.classList.add('hidden');
+        }
+    });
+    
+    // Schedule type handling
+    document.querySelectorAll('input[name="schedule_type"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.getElementById('interval_config').classList.add('hidden');
+            document.getElementById('cron_config').classList.add('hidden');
+            
+            if (this.value === 'interval') {
+                document.getElementById('interval_config').classList.remove('hidden');
+            } else if (this.value === 'cron') {
+                document.getElementById('cron_config').classList.remove('hidden');
+            }
+            
+            // Update styling
+            document.querySelectorAll('.schedule-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            this.closest('.schedule-option').classList.add('selected');
+        });
+    });
+    
+    // Captcha handling
+    document.getElementById('captcha_required').addEventListener('change', function() {
+        const captchaConfig = document.getElementById('captcha_config');
+        if (this.checked) {
+            captchaConfig.classList.remove('hidden');
+        } else {
+            captchaConfig.classList.add('hidden');
+        }
+    });
+    
+    // Test scraper handling
+    document.getElementById('test_scraper').addEventListener('change', function() {
+        const testConfig = document.getElementById('test_config');
+        if (this.checked) {
+            testConfig.classList.remove('hidden');
+        } else {
+            testConfig.classList.add('hidden');
+        }
+    });
+    
+    // Proxy testing
+    document.getElementById('test_proxy_btn').addEventListener('click', function() {
+        const button = this;
+        const resultDiv = document.getElementById('proxy_test_result');
+        
+        // Get proxy data
+        const proxyData = {
+            host: document.getElementById('proxy_host').value,
+            port: document.getElementById('proxy_port').value,
+            username: document.getElementById('proxy_username').value,
+            password: document.getElementById('proxy_password').value,
+            protocol: document.getElementById('proxy_protocol').value
+        };
+        
+        if (!proxyData.host || !proxyData.port) {
+            resultDiv.className = 'proxy-test-result error';
+            resultDiv.textContent = 'Please enter host and port first';
+            resultDiv.classList.remove('hidden');
+            return;
+        }
+        
+        // Show loading
+        button.innerHTML = '<span class="loading-spinner"></span> Testing...';
+        button.disabled = true;
+        resultDiv.classList.add('hidden');
+        
+        // Test proxy
+        fetch('{% url "scrapers:test_proxy_connection" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify(proxyData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            resultDiv.className = data.success ? 'proxy-test-result success' : 'proxy-test-result error';
+            resultDiv.textContent = data.message;
+            if (data.response_time) {
+                resultDiv.textContent += ` (${data.response_time}ms)`;
+            }
+            resultDiv.classList.remove('hidden');
+        })
+        .catch(error => {
+            resultDiv.className = 'proxy-test-result error';
+            resultDiv.textContent = 'Test failed: ' + error.message;
+            resultDiv.classList.remove('hidden');
+        })
+        .finally(() => {
+            button.innerHTML = '🧪 Test Proxy Connection';
+            button.disabled = false;
+        });
+    });
+    
+    // Auto-generate scraper name from display name
+    document.getElementById('display_name').addEventListener('input', function() {
+        const scraperNameField = document.getElementById('scraper_name');
+        if (!scraperNameField.value) {
+            const name = this.value.toLowerCase()
+                .replace(/[^a-z0-9\s]/g, '')
+                .replace(/\s+/g, '_')
+                .replace(/_+/g, '_')
+                .replace(/^_|_$/g, '');
+            scraperNameField.value = name;
+        }
+    });
+    
+    // Auto-generate schedule name
+    document.getElementById('display_name').addEventListener('input', function() {
+        const scheduleNameField = document.getElementById('schedule_name');
+        if (!scheduleNameField.value) {
+            scheduleNameField.value = `Daily ${this.value} Scrape`;
+        }
+    });
+    
+    // Auto-generate proxy name
+    document.getElementById('display_name').addEventListener('input', function() {
+        const proxyNameField = document.getElementById('proxy_name');
+        if (!proxyNameField.value) {
+            const name = this.value.toLowerCase()
+                .replace(/[^a-z0-9\s]/g, '')
+                .replace(/\s+/g, '_')
+                .replace(/_+/g, '_')
+                .replace(/^_|_$/g, '') + '_proxy';
+            proxyNameField.value = name;
+        }
+    });
+    
+    function validateStep(step) {
+        const stepElement = document.querySelector(`[data-step="${step}"]`);
+        const requiredFields = stepElement.querySelectorAll('input[required], select[required]');
+        
+        for (let field of requiredFields) {
+            if (!field.value.trim()) {
+                field.focus();
+                alert(`Please fill in the required field: ${field.previousElementSibling.textContent}`);
+                return false;
+            }
+        }
+        
+        // Additional validation for specific steps
+        if (step === 1) {
+            const scraperName = document.getElementById('scraper_name').value;
+            if (!/^[a-z0-9_]+$/.test(scraperName)) {
+                alert('Scraper name must contain only lowercase letters, numbers, and underscores');
+                return false;
+            }
+        }
+        
+        if (step === 3) {
+            const proxyOption = document.querySelector('input[name="proxy_option"]:checked').value;
+            if (proxyOption === 'new') {
+                const host = document.getElementById('proxy_host').value;
+                const port = document.getElementById('proxy_port').value;
+                if (!host || !port) {
+                    alert('Please enter proxy host and port');
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    }
+    
+    function validateStepsUpTo(step) {
+        for (let i = 1; i <= step; i++) {
+            if (!validateStep(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    function updateSummary() {
+        const summary = document.getElementById('configuration_summary');
+        
+        // Collect form data
+        const scraperName = document.getElementById('scraper_name').value;
+        const displayName = document.getElementById('display_name').value;
+        const targetWebsite = document.getElementById('target_website').value;
+        const browserEngine = document.getElementById('browser_engine').value;
+        const proxyOption = document.querySelector('input[name="proxy_option"]:checked').value;
+        const scheduleEnabled = document.getElementById('create_schedule').checked;
+        
+        summary.innerHTML = `
+            <div class="summary-card">
+                <div class="summary-title">📝 Basic Information</div>
+                <div class="summary-content">
+                    <strong>Name:</strong> ${scraperName}<br>
+                    <strong>Display Name:</strong> ${displayName}<br>
+                    <strong>Target Website:</strong> ${targetWebsite}<br>
+                    <strong>Browser Engine:</strong> ${browserEngine}
+                </div>
+            </div>
+            
+            <div class="summary-card">
+                <div class="summary-title">🌐 Proxy Configuration</div>
+                <div class="summary-content">
+                    ${proxyOption === 'none' ? 'No proxy configured' : 
+                      proxyOption === 'existing' ? 'Using existing proxy configuration' : 
+                      'Creating new proxy configuration'}
+                </div>
+            </div>
+            
+            <div class="summary-card">
+                <div class="summary-title">⏰ Scheduling</div>
+                <div class="summary-content">
+                    ${scheduleEnabled ? 'Automatic scheduling enabled' : 'Manual execution only'}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Initialize first step
+    showStep(1);
+});
+</script>
+{% endblock %} 
