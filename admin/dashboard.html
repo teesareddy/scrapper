@@ -1,0 +1,562 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n admin_urls static admin_list %}
+
+{% block title %}🎭 Theatre Ticket Scraper Dashboard{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        .dashboard-container {
+            padding: 1.5rem;
+            background: #f8fafc;
+            min-height: calc(100vh - 120px);
+        }
+        .dashboard-header {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .dashboard-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        .dashboard-subtitle {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .metric-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            position: relative;
+        }
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+        .metric-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            opacity: 0.8;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .metric-label {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+        .metric-change {
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .charts-section {
+            margin-bottom: 1.5rem;
+        }
+        .charts-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .chart-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        .chart-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .chart-container {
+            display: none;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            height: 350px;
+        }
+        .chart-container.active {
+            display: block;
+        }
+        .chart-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        .chart-canvas {
+            max-height: 280px;
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .status-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+        .status-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .badge-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .badge-info {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .recent-activity {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+        .icon-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .icon-error {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+        .activity-content {
+            flex: 1;
+        }
+        .activity-title {
+            font-weight: 500;
+            color: #1f2937;
+            font-size: 0.875rem;
+        }
+        .activity-time {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .blue { color: #3b82f6; }
+        .green { color: #10b981; }
+        .emerald { color: #059669; }
+        .purple { color: #8b5cf6; }
+        .orange { color: #f59e0b; }
+        .red { color: #ef4444; }
+        
+        /* Performance optimizations */
+        * {
+            box-sizing: border-box;
+        }
+        .metric-card,
+        .status-card,
+        .chart-container {
+            will-change: auto;
+            transform: translateZ(0);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 1rem;
+            }
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .charts-toggle {
+                justify-content: center;
+            }
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Header -->
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">🎭 Theatre Ticket Scraper Analytics</h1>
+        <p class="dashboard-subtitle">Monitor your scraping operations and data collection</p>
+        <div style="margin-top: 1.5rem;">
+            <a href="{% url 'scrapers:onboarding' %}" style="background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 500; border: 1px solid rgba(255,255,255,0.3); transition: all 0.2s;">
+                🚀 Add New Scraper
+            </a>
+        </div>
+    </div>
+
+    <!-- KPI Metrics -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-icon blue">🤖</div>
+            <div class="metric-value blue">{{ total_scrapers|default:0 }}</div>
+            <div class="metric-label">Total Scrapers</div>
+            <div class="metric-change badge-success">{{ active_scrapers|default:0 }} active</div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-icon green">📊</div>
+            <div class="metric-value green">{{ total_scrapes|default:0 }}</div>
+            <div class="metric-label">Total Scrapes</div>
+            <div class="metric-change badge-info">{{ recent_scrapes|default:0 }} today</div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-icon emerald">✅</div>
+            <div class="metric-value emerald">{{ success_rate|default:0 }}%</div>
+            <div class="metric-label">Success Rate</div>
+            <div class="metric-change badge-success">Overall</div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-icon purple">🌐</div>
+            <div class="metric-value purple">{{ active_proxies|default:0 }}</div>
+            <div class="metric-label">Active Proxies</div>
+            <div class="metric-change badge-info">{{ total_proxies|default:0 }} total</div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-section">
+        <div class="charts-toggle">
+            <button class="chart-btn active" data-chart="activity">📈 Activity Chart</button>
+            <button class="chart-btn" data-chart="success">🎯 Success Rate</button>
+            <button class="chart-btn" data-chart="proxy">🌐 Proxy Usage</button>
+        </div>
+
+        <div id="activity-chart" class="chart-container active">
+            <h3 class="chart-title">📈 Scrape Activity (Last 7 Days)</h3>
+            <canvas id="activityCanvas" class="chart-canvas"></canvas>
+        </div>
+
+        <div id="success-chart" class="chart-container">
+            <h3 class="chart-title">🎯 Success vs Failures</h3>
+            <canvas id="successCanvas" class="chart-canvas"></canvas>
+        </div>
+
+        <div id="proxy-chart" class="chart-container">
+            <h3 class="chart-title">🌐 Proxy Performance</h3>
+            <canvas id="proxyCanvas" class="chart-canvas"></canvas>
+        </div>
+    </div>
+
+    <!-- Status and Activity -->
+    <div class="status-grid">
+        <div class="status-card">
+            <h3 class="chart-title">🔧 System Status</h3>
+            <div class="status-item">
+                <span>🤖 Scrapers</span>
+                <span class="status-badge badge-success">{{ active_scrapers|default:0 }}/{{ total_scrapers|default:0 }}</span>
+            </div>
+            <div class="status-item">
+                <span>🌐 Proxies</span>
+                <span class="status-badge badge-info">{{ active_proxies|default:0 }} Active</span>
+            </div>
+            <div class="status-item">
+                <span>📊 Success Rate</span>
+                <span class="status-badge badge-success">{{ success_rate|default:0 }}%</span>
+            </div>
+            <div class="status-item">
+                <span>🔄 System</span>
+                <span class="status-badge badge-success">Operational</span>
+            </div>
+            <div class="status-item">
+                <span>📈 Events</span>
+                <span class="status-badge badge-info">{{ total_events|default:0 }}</span>
+            </div>
+            <div class="status-item">
+                <span>🏛️ Venues</span>
+                <span class="status-badge badge-info">{{ total_venues|default:0 }}</span>
+            </div>
+        </div>
+
+        <div class="status-card">
+            <h3 class="chart-title">🕒 Recent Activity</h3>
+            <div class="recent-activity">
+                {% if recent_activities %}
+                    {% for activity in recent_activities|slice:":10" %}
+                        <div class="activity-item">
+                            <div class="activity-icon {{ activity.icon_class }}">
+                                {{ activity.icon }}
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">{{ activity.title|truncatechars:50 }}</div>
+                                <div class="activity-time">{{ activity.timestamp|timesince }} ago</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div style="text-align: center; padding: 2rem; color: #6b7280;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">📭</div>
+                        <div>No recent activity</div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let charts = {};
+    let currentChart = 'activity';
+
+    // Chart toggle functionality
+    const chartButtons = document.querySelectorAll('.chart-btn');
+    const chartContainers = document.querySelectorAll('.chart-container');
+
+    chartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const chartType = this.dataset.chart;
+            
+            // Update active button
+            chartButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update active chart
+            chartContainers.forEach(container => container.classList.remove('active'));
+            document.getElementById(chartType + '-chart').classList.add('active');
+            
+            // Load chart if not already loaded
+            if (!charts[chartType]) {
+                loadChart(chartType);
+            }
+            
+            currentChart = chartType;
+        });
+    });
+
+    // Load initial chart
+    loadChart('activity');
+
+    function loadChart(type) {
+        const canvasId = type + 'Canvas';
+        const canvas = document.getElementById(canvasId);
+        
+        if (!canvas) return;
+
+        // Destroy existing chart if it exists
+        if (charts[type]) {
+            charts[type].destroy();
+        }
+
+        const ctx = canvas.getContext('2d');
+        
+        // Chart configurations with performance optimizations
+        const chartConfigs = {
+            activity: {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Successful',
+                        data: [12, 19, 15, 25, 22, 18, 30],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 3,
+                        pointHoverRadius: 5
+                    }, {
+                        label: 'Failed',
+                        data: [2, 3, 1, 4, 2, 1, 3],
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 3,
+                        pointHoverRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 500
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 15
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#f3f4f6'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            },
+            success: {
+                type: 'doughnut',
+                data: {
+                    labels: ['Successful', 'Failed'],
+                    datasets: [{
+                        data: [85, 15],
+                        backgroundColor: ['#10b981', '#ef4444'],
+                        borderWidth: 0,
+                        cutout: '60%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 500
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 15
+                            }
+                        }
+                    }
+                }
+            },
+            proxy: {
+                type: 'bar',
+                data: {
+                    labels: ['Active', 'Idle', 'Error'],
+                    datasets: [{
+                        label: 'Proxy Status',
+                        data: [15, 5, 2],
+                        backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
+                        borderRadius: 4,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 500
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#f3f4f6'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Create chart with error handling
+        try {
+            charts[type] = new Chart(ctx, chartConfigs[type]);
+        } catch (error) {
+            console.error('Error creating chart:', error);
+            canvas.parentElement.innerHTML = '<div style="text-align: center; color: #6b7280; padding: 2rem;">Chart failed to load</div>';
+        }
+    }
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', function() {
+        Object.values(charts).forEach(chart => {
+            if (chart) chart.destroy();
+        });
+    });
+});
+</script>
+{% endblock %} 

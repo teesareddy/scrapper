@@ -1,0 +1,224 @@
+{% extends 'unfold/layouts/base_simple.html' %}
+{% load i18n unfold %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block title %}
+    {% trans 'Dashboard' %} | {{ site_title|default:_('Django site admin') }}
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}">
+            🎭 {{ site_header }}
+        </a>
+    </h1>
+{% endblock %}
+
+{% block content %}
+    <!-- KPI Cards Row -->
+    {% component "unfold/components/flex.html" with class="gap-8 mb-8" %}
+        {% component "unfold/components/card.html" with class="lg:w-1/4" %}
+            {% component "unfold/components/text.html" with class="text-gray-600 text-sm font-medium" %}
+                {% trans "Total Scrapers" %}
+            {% endcomponent %}
+            {% component "unfold/components/title.html" with class="text-3xl font-bold text-blue-600" %}
+                {{ dashboard_data.total_scrapers|default:"0" }}
+            {% endcomponent %}
+            {% component "unfold/components/text.html" with class="text-green-600 text-xs mt-2" %}
+                🤖 {% trans "Active scrapers" %}
+            {% endcomponent %}
+        {% endcomponent %}
+
+        {% component "unfold/components/card.html" with class="lg:w-1/4" %}
+            {% component "unfold/components/text.html" with class="text-gray-600 text-sm font-medium" %}
+                {% trans "Total Scrapes" %}
+            {% endcomponent %}
+            {% component "unfold/components/title.html" with class="text-3xl font-bold text-green-600" %}
+                {{ dashboard_data.total_scrapes|default:"0" }}
+            {% endcomponent %}
+            {% component "unfold/components/text.html" with class="text-blue-600 text-xs mt-2" %}
+                📊 {% trans "All time" %}
+            {% endcomponent %}
+        {% endcomponent %}
+
+        {% component "unfold/components/card.html" with class="lg:w-1/4" %}
+            {% component "unfold/components/text.html" with class="text-gray-600 text-sm font-medium" %}
+                {% trans "Success Rate" %}
+            {% endcomponent %}
+            {% component "unfold/components/title.html" with class="text-3xl font-bold text-emerald-600" %}
+                {{ dashboard_data.success_rate|default:"0" }}%
+            {% endcomponent %}
+            {% component "unfold/components/text.html" with class="text-emerald-600 text-xs mt-2" %}
+                ✅ {% trans "Overall performance" %}
+            {% endcomponent %}
+        {% endcomponent %}
+
+        {% component "unfold/components/card.html" with class="lg:w-1/4" %}
+            {% component "unfold/components/text.html" with class="text-gray-600 text-sm font-medium" %}
+                {% trans "Active Proxies" %}
+            {% endcomponent %}
+            {% component "unfold/components/title.html" with class="text-3xl font-bold text-purple-600" %}
+                {{ dashboard_data.active_proxies|default:"0" }}
+            {% endcomponent %}
+            {% component "unfold/components/text.html" with class="text-purple-600 text-xs mt-2" %}
+                🌐 {% trans "Available now" %}
+            {% endcomponent %}
+        {% endcomponent %}
+    {% endcomponent %}
+
+    <!-- Charts Row -->
+    {% component "unfold/components/flex.html" with class="gap-8 mb-8" %}
+        {% component "unfold/components/card.html" with class="lg:w-2/3" %}
+            {% component "unfold/components/title.html" with class="text-xl font-semibold mb-4" %}
+                📈 {% trans "Scrape Activity (Last 7 Days)" %}
+            {% endcomponent %}
+            <canvas id="activityChart" width="400" height="200"></canvas>
+        {% endcomponent %}
+
+        {% component "unfold/components/card.html" with class="lg:w-1/3" %}
+            {% component "unfold/components/title.html" with class="text-xl font-semibold mb-4" %}
+                🎯 {% trans "Success vs Failures" %}
+            {% endcomponent %}
+            <canvas id="successChart" width="300" height="200"></canvas>
+        {% endcomponent %}
+    {% endcomponent %}
+
+    <!-- Recent Activity and System Status -->
+    {% component "unfold/components/flex.html" with class="gap-8" %}
+        {% component "unfold/components/card.html" with class="lg:w-1/2" %}
+            {% component "unfold/components/title.html" with class="text-xl font-semibold mb-4" %}
+                🕒 {% trans "Recent Activity" %}
+            {% endcomponent %}
+            {% if dashboard_data.recent_scrapes %}
+                <div class="space-y-3">
+                    {% for scrape in dashboard_data.recent_scrapes %}
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                {% if scrape.scrape_success %}
+                                    <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                                {% else %}
+                                    <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+                                {% endif %}
+                                <div>
+                                    <p class="font-medium text-gray-900">{{ scrape.scraper_definition.name }}</p>
+                                    <p class="text-sm text-gray-500">{{ scrape.scraped_at_utc|timesince }} ago</p>
+                                </div>
+                            </div>
+                            {% if scrape.scrape_success %}
+                                <span class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Success</span>
+                            {% else %}
+                                <span class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Failed</span>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {% component "unfold/components/text.html" with class="text-gray-500 text-center py-8" %}
+                    {% trans "No recent activity" %}
+                {% endcomponent %}
+            {% endif %}
+        {% endcomponent %}
+
+        {% component "unfold/components/card.html" with class="lg:w-1/2" %}
+            {% component "unfold/components/title.html" with class="text-xl font-semibold mb-4" %}
+                🔧 {% trans "System Status" %}
+            {% endcomponent %}
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    {% component "unfold/components/text.html" %}
+                        🤖 {% trans "Scrapers Status" %}
+                    {% endcomponent %}
+                    <span class="px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">
+                        {{ dashboard_data.active_scrapers }}/{{ dashboard_data.total_scrapers }} {% trans "Active" %}
+                    </span>
+                </div>
+                <div class="flex items-center justify-between">
+                    {% component "unfold/components/text.html" %}
+                        🌐 {% trans "Proxy Health" %}
+                    {% endcomponent %}
+                    <span class="px-3 py-1 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full">
+                        {{ dashboard_data.active_proxies }} {% trans "Available" %}
+                    </span>
+                </div>
+                <div class="flex items-center justify-between">
+                    {% component "unfold/components/text.html" %}
+                        📊 {% trans "Last 24h Success Rate" %}
+                    {% endcomponent %}
+                    <span class="px-3 py-1 text-sm font-semibold text-emerald-800 bg-emerald-100 rounded-full">
+                        {{ dashboard_data.success_rate }}%
+                    </span>
+                </div>
+                <div class="flex items-center justify-between">
+                    {% component "unfold/components/text.html" %}
+                        🔄 {% trans "System Status" %}
+                    {% endcomponent %}
+                    <span class="px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">
+                        {% trans "Operational" %}
+                    </span>
+                </div>
+            </div>
+        {% endcomponent %}
+    {% endcomponent %}
+
+    <!-- Chart.js Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Activity Chart
+            const activityCtx = document.getElementById('activityChart');
+            if (activityCtx) {
+                new Chart(activityCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Scrapes',
+                            data: [12, 19, 15, 25, 22, 18, 30],
+                            borderColor: 'rgb(59, 130, 246)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Success Chart
+            const successCtx = document.getElementById('successChart');
+            if (successCtx) {
+                new Chart(successCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Success', 'Failed'],
+                        datasets: [{
+                            data: [85, 15],
+                            backgroundColor: ['#10b981', '#ef4444']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %} 

@@ -1,0 +1,29 @@
+{
+  "currencyCode": "USD",
+  "unitCost": 0,
+  "expectedValue": 0,
+  "taxPaid": 0,
+  "faceValueCost": 0,
+  "deliveryType": "InApp",
+  "deliveryCost": 0,
+  "inHandAt": "2025-07-01T14:51:05.571Z",
+  "seating": {
+    "section": "1",
+    "row": "2"
+  },
+  "eventMapping": {
+    "eventName": "fake ticketmaster event",
+    "eventDate": "2025-07-25T00:00:00",
+    "venueName": "MSG",
+    "isEventDateConfirmed": true,
+    "city": "NYC",
+    "stateProvince": "NY",
+    "countryCode": "USA"
+  },
+  "externalId": "lkdljafljii", // send the primary key of packs
+  "primaryEventId": "ticketmaster event id",
+  "ticketCount": 2,
+  "autoBroadcast": true,
+  "internalNotes": "23r2f",
+  "zoneFill": true
+}

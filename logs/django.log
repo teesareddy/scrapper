@@ -1,0 +1,368 @@
+WARNING 2025-06-28 11:01:01,809 providers Incomplete residential proxy configuration for webshare
+WARNING 2025-06-28 11:01:01,810 providers Incomplete datacenter proxy configuration for webshare
+ERROR 2025-06-28 11:01:01,810 providers No valid proxy configuration found for Webshare provider
+WARNING 2025-06-28 11:01:01,810 service Skipped webshare proxy provider due to invalid configuration
+WARNING 2025-06-28 11:01:01,810 providers Incomplete residential proxy configuration for bright_data
+WARNING 2025-06-28 11:01:01,810 providers Incomplete datacenter proxy configuration for bright_data
+ERROR 2025-06-28 11:01:01,810 providers No valid proxy configuration found for Bright Data provider
+WARNING 2025-06-28 11:01:01,810 service Skipped bright_data proxy provider due to invalid configuration
+ERROR 2025-06-28 11:01:01,810 providers Failed to validate database proxy configuration: could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+WARNING 2025-06-28 11:01:01,810 service Skipped database proxy provider due to invalid configuration
+WARNING 2025-06-28 11:01:07,702 providers Incomplete residential proxy configuration for webshare
+WARNING 2025-06-28 11:01:07,702 providers Incomplete datacenter proxy configuration for webshare
+ERROR 2025-06-28 11:01:07,702 providers No valid proxy configuration found for Webshare provider
+WARNING 2025-06-28 11:01:07,702 service Skipped webshare proxy provider due to invalid configuration
+WARNING 2025-06-28 11:01:07,702 providers Incomplete residential proxy configuration for bright_data
+WARNING 2025-06-28 11:01:07,702 providers Incomplete datacenter proxy configuration for bright_data
+ERROR 2025-06-28 11:01:07,702 providers No valid proxy configuration found for Bright Data provider
+WARNING 2025-06-28 11:01:07,702 service Skipped bright_data proxy provider due to invalid configuration
+ERROR 2025-06-28 11:01:07,703 providers Failed to validate database proxy configuration: could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+WARNING 2025-06-28 11:01:07,703 service Skipped database proxy provider due to invalid configuration
+WARNING 2025-06-28 11:01:14,053 providers Incomplete residential proxy configuration for webshare
+WARNING 2025-06-28 11:01:14,053 providers Incomplete datacenter proxy configuration for webshare
+ERROR 2025-06-28 11:01:14,053 providers No valid proxy configuration found for Webshare provider
+WARNING 2025-06-28 11:01:14,053 service Skipped webshare proxy provider due to invalid configuration
+WARNING 2025-06-28 11:01:14,053 providers Incomplete residential proxy configuration for bright_data
+WARNING 2025-06-28 11:01:14,053 providers Incomplete datacenter proxy configuration for bright_data
+ERROR 2025-06-28 11:01:14,053 providers No valid proxy configuration found for Bright Data provider
+WARNING 2025-06-28 11:01:14,053 service Skipped bright_data proxy provider due to invalid configuration
+ERROR 2025-06-28 11:01:14,054 providers Failed to validate database proxy configuration: could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+WARNING 2025-06-28 11:01:14,054 service Skipped database proxy provider due to invalid configuration
+WARNING 2025-06-28 11:01:46,858 providers Incomplete residential proxy configuration for webshare
+WARNING 2025-06-28 11:01:46,858 providers Incomplete datacenter proxy configuration for webshare
+ERROR 2025-06-28 11:01:46,858 providers No valid proxy configuration found for Webshare provider
+WARNING 2025-06-28 11:01:46,858 service Skipped webshare proxy provider due to invalid configuration
+WARNING 2025-06-28 11:01:46,858 providers Incomplete residential proxy configuration for bright_data
+WARNING 2025-06-28 11:01:46,858 providers Incomplete datacenter proxy configuration for bright_data
+ERROR 2025-06-28 11:01:46,858 providers No valid proxy configuration found for Bright Data provider
+WARNING 2025-06-28 11:01:46,858 service Skipped bright_data proxy provider due to invalid configuration
+ERROR 2025-06-28 11:01:46,859 providers Failed to validate database proxy configuration: could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+WARNING 2025-06-28 11:01:46,859 service Skipped database proxy provider due to invalid configuration
+WARNING 2025-06-28 11:01:59,283 providers Incomplete residential proxy configuration for webshare
+WARNING 2025-06-28 11:01:59,283 providers Incomplete datacenter proxy configuration for webshare
+ERROR 2025-06-28 11:01:59,283 providers No valid proxy configuration found for Webshare provider
+WARNING 2025-06-28 11:01:59,284 service Skipped webshare proxy provider due to invalid configuration
+WARNING 2025-06-28 11:01:59,284 providers Incomplete residential proxy configuration for bright_data
+WARNING 2025-06-28 11:01:59,284 providers Incomplete datacenter proxy configuration for bright_data
+ERROR 2025-06-28 11:01:59,284 providers No valid proxy configuration found for Bright Data provider
+WARNING 2025-06-28 11:01:59,284 service Skipped bright_data proxy provider due to invalid configuration
+ERROR 2025-06-28 11:01:59,284 providers Failed to validate database proxy configuration: could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+WARNING 2025-06-28 11:01:59,284 service Skipped database proxy provider due to invalid configuration
+WARNING 2025-06-28 11:02:22,097 providers Incomplete residential proxy configuration for webshare
+WARNING 2025-06-28 11:02:22,097 providers Incomplete datacenter proxy configuration for webshare
+ERROR 2025-06-28 11:02:22,098 providers No valid proxy configuration found for Webshare provider
+WARNING 2025-06-28 11:02:22,098 service Skipped webshare proxy provider due to invalid configuration
+WARNING 2025-06-28 11:02:22,098 providers Incomplete residential proxy configuration for bright_data
+WARNING 2025-06-28 11:02:22,098 providers Incomplete datacenter proxy configuration for bright_data
+ERROR 2025-06-28 11:02:22,098 providers No valid proxy configuration found for Bright Data provider
+WARNING 2025-06-28 11:02:22,098 service Skipped bright_data proxy provider due to invalid configuration
+ERROR 2025-06-28 11:02:22,099 providers Failed to validate database proxy configuration: could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+WARNING 2025-06-28 11:02:22,099 service Skipped database proxy provider due to invalid configuration
+WARNING 2025-06-28 11:04:11,670 providers Incomplete residential proxy configuration for webshare
+WARNING 2025-06-28 11:04:11,670 providers Incomplete datacenter proxy configuration for webshare
+ERROR 2025-06-28 11:04:11,670 providers No valid proxy configuration found for Webshare provider
+WARNING 2025-06-28 11:04:11,670 service Skipped webshare proxy provider due to invalid configuration
+WARNING 2025-06-28 11:04:11,670 providers Incomplete residential proxy configuration for bright_data
+WARNING 2025-06-28 11:04:11,670 providers Incomplete datacenter proxy configuration for bright_data
+ERROR 2025-06-28 11:04:11,670 providers No valid proxy configuration found for Bright Data provider
+WARNING 2025-06-28 11:04:11,670 service Skipped bright_data proxy provider due to invalid configuration
+ERROR 2025-06-28 11:04:11,671 providers Failed to validate database proxy configuration: could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+WARNING 2025-06-28 11:04:11,671 service Skipped database proxy provider due to invalid configuration
+WARNING 2025-06-28 11:04:22,270 providers Incomplete residential proxy configuration for webshare
+WARNING 2025-06-28 11:04:22,270 providers Incomplete datacenter proxy configuration for webshare
+ERROR 2025-06-28 11:04:22,270 providers No valid proxy configuration found for Webshare provider
+WARNING 2025-06-28 11:04:22,270 service Skipped webshare proxy provider due to invalid configuration
+WARNING 2025-06-28 11:04:22,270 providers Incomplete residential proxy configuration for bright_data
+WARNING 2025-06-28 11:04:22,271 providers Incomplete datacenter proxy configuration for bright_data
+ERROR 2025-06-28 11:04:22,271 providers No valid proxy configuration found for Bright Data provider
+WARNING 2025-06-28 11:04:22,271 service Skipped bright_data proxy provider due to invalid configuration
+ERROR 2025-06-28 11:04:22,271 providers Failed to validate database proxy configuration: could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+WARNING 2025-06-28 11:04:22,271 service Skipped database proxy provider due to invalid configuration
+INFO 2025-07-09 17:45:17,968 seat_pack_sync Starting seat pack diff: 1 existing, 1 new
+DEBUG 2025-07-09 17:45:17,971 seat_pack_sync Built lookups: 1 existing, 1 new, 2 seat mappings
+DEBUG 2025-07-09 17:45:17,971 seat_pack_sync Comparison: 1 identical, 0 to create, 0 to delete
+DEBUG 2025-07-09 17:45:17,971 seat_pack_sync Built correlation maps: 0 new->sources, 0 sources->children
+INFO 2025-07-09 17:45:17,971 seat_pack_sync Sync plan generated: 0 create, 0 update, 0 delist
+INFO 2025-07-09 17:45:17,971 seat_pack_sync Starting seat pack diff: 1 existing, 1 new
+DEBUG 2025-07-09 17:45:17,971 seat_pack_sync Built lookups: 1 existing, 1 new, 2 seat mappings
+DEBUG 2025-07-09 17:45:17,971 seat_pack_sync Comparison: 0 identical, 1 to create, 1 to delete
+DEBUG 2025-07-09 17:45:17,971 seat_pack_sync Built correlation maps: 1 new->sources, 1 sources->children
+DEBUG 2025-07-09 17:45:17,971 seat_pack_sync New pack pack_1: shrink from 1 sources
+DEBUG 2025-07-09 17:45:17,971 seat_pack_sync Delisting pack pack_1: transformed
+INFO 2025-07-09 17:45:17,971 seat_pack_sync Sync plan generated: 1 create, 0 update, 1 delist
+INFO 2025-07-09 17:45:58,326 seat_pack_sync Starting seat pack diff: 1 existing, 1 new
+DEBUG 2025-07-09 17:45:58,326 seat_pack_sync Built lookups: 1 existing, 1 new, 2 seat mappings
+DEBUG 2025-07-09 17:45:58,326 seat_pack_sync Comparison: 1 identical, 0 to create, 0 to delete
+DEBUG 2025-07-09 17:45:58,326 seat_pack_sync Built correlation maps: 0 new->sources, 0 sources->children
+INFO 2025-07-09 17:45:58,326 seat_pack_sync Sync plan generated: 0 create, 0 update, 0 delist
+INFO 2025-07-09 17:45:58,327 seat_pack_sync Starting seat pack diff: 1 existing, 1 new
+DEBUG 2025-07-09 17:45:58,327 seat_pack_sync Built lookups: 1 existing, 1 new, 2 seat mappings
+DEBUG 2025-07-09 17:45:58,327 seat_pack_sync Comparison: 0 identical, 1 to create, 1 to delete
+DEBUG 2025-07-09 17:45:58,327 seat_pack_sync Built correlation maps: 1 new->sources, 1 sources->children
+DEBUG 2025-07-09 17:45:58,327 seat_pack_sync New pack pack_1: shrink from 1 sources
+DEBUG 2025-07-09 17:45:58,327 seat_pack_sync Delisting pack pack_1: transformed
+INFO 2025-07-09 17:45:58,327 seat_pack_sync Sync plan generated: 1 create, 0 update, 1 delist
+INFO 2025-07-09 17:45:58,327 seat_pack_sync Starting seat pack diff: 0 existing, 1 new
+DEBUG 2025-07-09 17:45:58,327 seat_pack_sync Built lookups: 0 existing, 1 new, 0 seat mappings
+DEBUG 2025-07-09 17:45:58,327 seat_pack_sync Comparison: 0 identical, 1 to create, 0 to delete
+DEBUG 2025-07-09 17:45:58,327 seat_pack_sync Built correlation maps: 1 new->sources, 0 sources->children
+DEBUG 2025-07-09 17:45:58,327 seat_pack_sync New pack pack_new: create from 0 sources
+INFO 2025-07-09 17:45:58,327 seat_pack_sync Sync plan generated: 1 create, 0 update, 0 delist
+INFO 2025-07-09 19:23:24,119 web_scraper_utils 🚫 Proxy disabled - using direct connection
+ERROR 2025-07-09 19:23:24,130 base Scraping exception: Washington Pavilion extraction failed: No module named 'playwright'
+ERROR 2025-07-17 02:56:44,278 register_existing_scrapers Failed to process scraper 'broadway_sf_scraper_v5': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-17 02:56:44,281 register_existing_scrapers Failed to process scraper 'david_h_koch_theater_scraper_v5': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-17 02:56:44,282 register_existing_scrapers Failed to process scraper 'washington_pavilion_scraper_v5': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-17 02:56:44,282 register_existing_scrapers Failed to process scraper 'demo_scraper_v1': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-17 15:06:32,770 register_existing_scrapers Failed to process scraper 'broadway_sf_scraper_v5': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-17 15:06:32,771 register_existing_scrapers Failed to process scraper 'david_h_koch_theater_scraper_v5': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-17 15:06:32,772 register_existing_scrapers Failed to process scraper 'washington_pavilion_scraper_v5': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-17 15:06:32,772 register_existing_scrapers Failed to process scraper 'demo_scraper_v1': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+INFO 2025-07-18 10:18:11,174 web_scraper_utils 🚫 Proxy disabled - using direct connection
+INFO 2025-07-20 04:31:53,728 base Starting cleanup for demo_scraper_v1
+INFO 2025-07-20 04:31:53,744 base Cleanup completed for demo_scraper_v1
+INFO 2025-07-20 04:31:53,755 base Starting cleanup for demo_scraper_v1
+INFO 2025-07-20 04:31:53,766 base Cleanup completed for demo_scraper_v1
+INFO 2025-07-21 17:17:10,995 seat_pack_sync Starting seat pack diff: 3 existing, 0 new, POS enabled: True
+WARNING 2025-07-21 17:17:10,997 seat_pack_sync 🚨 EMPTY SCRAPE DETECTED: Found 0 new packs but 3 existing packs
+WARNING 2025-07-21 17:17:10,997 seat_pack_sync 🛡️ MASS DELISTING PREVENTION: Preserving all existing packs to avoid incorrect delisting
+WARNING 2025-07-21 17:17:10,997 seat_pack_sync 📝 RECOMMENDATION: Check scraping logs for potential issues (website changes, network problems, etc.)
+WARNING 2025-07-21 17:17:10,997 seat_pack_sync ⚙️ CONFIGURATION: prevent_mass_delisting=1, min_threshold=0
+INFO 2025-07-21 17:17:10,997 seat_pack_sync 🔄 SAFE MODE: Added 3 unsynced packs to sync queue (no delisting)
+INFO 2025-07-21 17:17:10,997 seat_pack_sync 🔒 SAFETY MODE ACTIVATED: Preserved 3 existing packs from mass delisting
+INFO 2025-07-21 17:17:10,997 seat_pack_sync 🔄 SAFETY MODE: Queued 3 unsynced packs for POS sync
+INFO 2025-07-22 12:51:02,186 test_delisting_workflow 🧪 Starting POS Delisting Workflow Test
+INFO 2025-07-22 12:51:02,187 test_delisting_workflow 
+📋 Test 1: Four-dimensional state transitions
+INFO 2025-07-22 12:51:02,187 test_delisting_workflow   Testing state validation rules...
+DEBUG 2025-07-22 12:51:02,187 test_delisting_workflow     Testing valid combination 1: {'pack_status': 'active', 'pos_status': 'pending', 'pack_state': 'create', 'delist_reason': None}
+DEBUG 2025-07-22 12:51:02,187 test_delisting_workflow       ✓ Combination 1 validated successfully
+DEBUG 2025-07-22 12:51:02,187 test_delisting_workflow     Testing valid combination 2: {'pack_status': 'inactive', 'pos_status': 'inactive', 'pack_state': 'transformed', 'delist_reason': 'transformed'}
+DEBUG 2025-07-22 12:51:02,187 test_delisting_workflow       ✓ Combination 2 validated successfully
+DEBUG 2025-07-22 12:51:02,187 test_delisting_workflow     Testing valid combination 3: {'pack_status': 'inactive', 'pos_status': 'active', 'pack_state': 'delist', 'delist_reason': 'manual_delist'}
+ERROR 2025-07-22 12:51:02,187 test_delisting_workflow ❌ State transitions test failed: Valid combination 3 failed validation: ['manually_delisted_by is required for manual delists']
+INFO 2025-07-22 12:51:02,187 test_delisting_workflow 
+📋 Test 2: Diff algorithm transformation detection
+INFO 2025-07-22 12:51:02,187 test_delisting_workflow   Testing delist reason determination...
+DEBUG 2025-07-22 12:51:02,187 test_delisting_workflow     ✓ Test case 1: {'manually_delisted': True, 'pack_state': 'delist'} -> manual_delist (expected)
+DEBUG 2025-07-22 12:51:02,187 test_delisting_workflow     ✓ Test case 2: {'pack_state': 'split', 'source_pack_ids': ['parent_1']} -> transformed (expected)
+DEBUG 2025-07-22 12:51:02,187 test_delisting_workflow     ✓ Test case 3: {'creation_event': 'merge', 'source_pack_ids': ['parent_1', 'parent_2']} -> transformed (expected)
+DEBUG 2025-07-22 12:51:02,188 test_delisting_workflow     ✓ Test case 4: {'pack_status': 'active', 'pos_status': 'pending'} -> vanished (expected)
+INFO 2025-07-22 12:51:02,188 test_delisting_workflow   Diff algorithm enhancement tests passed
+INFO 2025-07-22 12:51:02,188 test_delisting_workflow ✅ Diff algorithm test passed
+INFO 2025-07-22 12:51:02,188 test_delisting_workflow 
+📋 Test 3: Sync executor delisting logic
+INFO 2025-07-22 12:51:02,188 test_delisting_workflow   Testing delist action execution logic...
+DEBUG 2025-07-22 12:51:02,188 test_delisting_workflow     Testing delist action state mapping...
+DEBUG 2025-07-22 12:51:02,188 test_delisting_workflow       ✓ Reason 'transformed' maps to pack_state 'transformed'
+DEBUG 2025-07-22 12:51:02,188 test_delisting_workflow       ✓ Reason 'vanished' maps to pack_state 'delist'
+DEBUG 2025-07-22 12:51:02,188 test_delisting_workflow       ✓ Reason 'manual_delist' maps to pack_state 'delist'
+DEBUG 2025-07-22 12:51:02,188 test_delisting_workflow       ✓ Reason 'performance_disabled' maps to pack_state 'delist'
+INFO 2025-07-22 12:51:02,188 test_delisting_workflow   Sync executor delisting tests passed
+INFO 2025-07-22 12:51:02,188 test_delisting_workflow ✅ Sync executor test passed
+INFO 2025-07-22 12:51:02,188 test_delisting_workflow 
+📋 Test 4: Delete API integration
+INFO 2025-07-22 12:51:02,207 test_delisting_workflow   Testing delete API integration logic...
+DEBUG 2025-07-22 12:51:02,207 test_delisting_workflow     Graceful errors (treated as success): ['Inventory not found', '404 - Resource not found', 'Inventory does not exist', 'Already deleted']
+DEBUG 2025-07-22 12:51:02,207 test_delisting_workflow     Critical errors (cause failure): ['Network timeout error']
+INFO 2025-07-22 12:51:02,207 test_delisting_workflow   Delete API integration tests passed
+INFO 2025-07-22 12:51:02,207 test_delisting_workflow ✅ Delete API test passed
+INFO 2025-07-22 12:51:02,207 test_delisting_workflow 
+🏆 Test Summary:
+INFO 2025-07-22 12:51:02,207 test_delisting_workflow   Tests run: 4
+INFO 2025-07-22 12:51:02,207 test_delisting_workflow   Passed: 3
+INFO 2025-07-22 12:51:02,207 test_delisting_workflow   Failed: 1
+INFO 2025-07-22 12:51:02,207 test_delisting_workflow   Errors:
+INFO 2025-07-22 12:51:02,207 test_delisting_workflow     • State transitions: Valid combination 3 failed validation: ['manually_delisted_by is required for manual delists']
+WARNING 2025-07-22 12:51:02,208 test_delisting_workflow ⚠️ Some tests failed. Check the errors above for details.
+INFO 2025-07-22 12:51:41,085 test_delisting_workflow 🧪 Starting POS Delisting Workflow Test
+INFO 2025-07-22 12:51:41,085 test_delisting_workflow 
+📋 Test 1: Four-dimensional state transitions
+INFO 2025-07-22 12:51:41,085 test_delisting_workflow   Testing state validation rules...
+DEBUG 2025-07-22 12:51:41,087 test_delisting_workflow     Testing valid combination 1: {'pack_status': 'active', 'pos_status': 'pending', 'pack_state': 'create', 'delist_reason': None}
+DEBUG 2025-07-22 12:51:41,087 test_delisting_workflow       ✓ Combination 1 validated successfully
+DEBUG 2025-07-22 12:51:41,087 test_delisting_workflow     Testing valid combination 2: {'pack_status': 'inactive', 'pos_status': 'inactive', 'pack_state': 'transformed', 'delist_reason': 'transformed'}
+DEBUG 2025-07-22 12:51:41,087 test_delisting_workflow       ✓ Combination 2 validated successfully
+DEBUG 2025-07-22 12:51:41,087 test_delisting_workflow     Testing valid combination 3: {'pack_status': 'inactive', 'pos_status': 'active', 'pack_state': 'delist', 'delist_reason': 'vanished'}
+ERROR 2025-07-22 12:51:41,087 test_delisting_workflow ❌ State transitions test failed: Valid combination 3 failed validation: ['Inactive packs cannot have active POS status']
+INFO 2025-07-22 12:51:41,087 test_delisting_workflow 
+📋 Test 2: Diff algorithm transformation detection
+INFO 2025-07-22 12:51:41,087 test_delisting_workflow   Testing delist reason determination...
+DEBUG 2025-07-22 12:51:41,087 test_delisting_workflow     ✓ Test case 1: {'manually_delisted': True, 'pack_state': 'delist'} -> manual_delist (expected)
+DEBUG 2025-07-22 12:51:41,087 test_delisting_workflow     ✓ Test case 2: {'pack_state': 'split', 'source_pack_ids': ['parent_1']} -> transformed (expected)
+DEBUG 2025-07-22 12:51:41,088 test_delisting_workflow     ✓ Test case 3: {'creation_event': 'merge', 'source_pack_ids': ['parent_1', 'parent_2']} -> transformed (expected)
+DEBUG 2025-07-22 12:51:41,088 test_delisting_workflow     ✓ Test case 4: {'pack_status': 'active', 'pos_status': 'pending'} -> vanished (expected)
+INFO 2025-07-22 12:51:41,088 test_delisting_workflow   Diff algorithm enhancement tests passed
+INFO 2025-07-22 12:51:41,088 test_delisting_workflow ✅ Diff algorithm test passed
+INFO 2025-07-22 12:51:41,088 test_delisting_workflow 
+📋 Test 3: Sync executor delisting logic
+INFO 2025-07-22 12:51:41,088 test_delisting_workflow   Testing delist action execution logic...
+DEBUG 2025-07-22 12:51:41,088 test_delisting_workflow     Testing delist action state mapping...
+DEBUG 2025-07-22 12:51:41,088 test_delisting_workflow       ✓ Reason 'transformed' maps to pack_state 'transformed'
+DEBUG 2025-07-22 12:51:41,088 test_delisting_workflow       ✓ Reason 'vanished' maps to pack_state 'delist'
+DEBUG 2025-07-22 12:51:41,088 test_delisting_workflow       ✓ Reason 'manual_delist' maps to pack_state 'delist'
+DEBUG 2025-07-22 12:51:41,088 test_delisting_workflow       ✓ Reason 'performance_disabled' maps to pack_state 'delist'
+INFO 2025-07-22 12:51:41,088 test_delisting_workflow   Sync executor delisting tests passed
+INFO 2025-07-22 12:51:41,088 test_delisting_workflow ✅ Sync executor test passed
+INFO 2025-07-22 12:51:41,088 test_delisting_workflow 
+📋 Test 4: Delete API integration
+INFO 2025-07-22 12:51:41,094 test_delisting_workflow   Testing delete API integration logic...
+DEBUG 2025-07-22 12:51:41,094 test_delisting_workflow     Graceful errors (treated as success): ['Inventory not found', '404 - Resource not found', 'Inventory does not exist', 'Already deleted']
+DEBUG 2025-07-22 12:51:41,094 test_delisting_workflow     Critical errors (cause failure): ['Network timeout error']
+INFO 2025-07-22 12:51:41,094 test_delisting_workflow   Delete API integration tests passed
+INFO 2025-07-22 12:51:41,094 test_delisting_workflow ✅ Delete API test passed
+INFO 2025-07-22 12:51:41,094 test_delisting_workflow 
+🏆 Test Summary:
+INFO 2025-07-22 12:51:41,094 test_delisting_workflow   Tests run: 4
+INFO 2025-07-22 12:51:41,094 test_delisting_workflow   Passed: 3
+INFO 2025-07-22 12:51:41,094 test_delisting_workflow   Failed: 1
+INFO 2025-07-22 12:51:41,094 test_delisting_workflow   Errors:
+INFO 2025-07-22 12:51:41,094 test_delisting_workflow     • State transitions: Valid combination 3 failed validation: ['Inactive packs cannot have active POS status']
+WARNING 2025-07-22 12:51:41,094 test_delisting_workflow ⚠️ Some tests failed. Check the errors above for details.
+INFO 2025-07-22 12:52:13,459 test_delisting_workflow 🧪 Starting POS Delisting Workflow Test
+INFO 2025-07-22 12:52:13,459 test_delisting_workflow 
+📋 Test 1: Four-dimensional state transitions
+INFO 2025-07-22 12:52:13,459 test_delisting_workflow   Testing state validation rules...
+DEBUG 2025-07-22 12:52:13,461 test_delisting_workflow     Testing valid combination 1: {'pack_status': 'active', 'pos_status': 'pending', 'pack_state': 'create', 'delist_reason': None}
+DEBUG 2025-07-22 12:52:13,461 test_delisting_workflow       ✓ Combination 1 validated successfully
+DEBUG 2025-07-22 12:52:13,461 test_delisting_workflow     Testing valid combination 2: {'pack_status': 'inactive', 'pos_status': 'inactive', 'pack_state': 'transformed', 'delist_reason': 'transformed'}
+DEBUG 2025-07-22 12:52:13,461 test_delisting_workflow       ✓ Combination 2 validated successfully
+DEBUG 2025-07-22 12:52:13,462 test_delisting_workflow     Testing valid combination 3: {'pack_status': 'inactive', 'pos_status': 'inactive', 'pack_state': 'delist', 'delist_reason': 'vanished'}
+DEBUG 2025-07-22 12:52:13,462 test_delisting_workflow       ✓ Combination 3 validated successfully
+INFO 2025-07-22 12:52:13,462 test_delisting_workflow   State transition validation tests passed
+INFO 2025-07-22 12:52:13,462 test_delisting_workflow ✅ State transitions test passed
+INFO 2025-07-22 12:52:13,462 test_delisting_workflow 
+📋 Test 2: Diff algorithm transformation detection
+INFO 2025-07-22 12:52:13,462 test_delisting_workflow   Testing delist reason determination...
+DEBUG 2025-07-22 12:52:13,462 test_delisting_workflow     ✓ Test case 1: {'manually_delisted': True, 'pack_state': 'delist'} -> manual_delist (expected)
+DEBUG 2025-07-22 12:52:13,462 test_delisting_workflow     ✓ Test case 2: {'pack_state': 'split', 'source_pack_ids': ['parent_1']} -> transformed (expected)
+DEBUG 2025-07-22 12:52:13,462 test_delisting_workflow     ✓ Test case 3: {'creation_event': 'merge', 'source_pack_ids': ['parent_1', 'parent_2']} -> transformed (expected)
+DEBUG 2025-07-22 12:52:13,462 test_delisting_workflow     ✓ Test case 4: {'pack_status': 'active', 'pos_status': 'pending'} -> vanished (expected)
+INFO 2025-07-22 12:52:13,462 test_delisting_workflow   Diff algorithm enhancement tests passed
+INFO 2025-07-22 12:52:13,462 test_delisting_workflow ✅ Diff algorithm test passed
+INFO 2025-07-22 12:52:13,462 test_delisting_workflow 
+📋 Test 3: Sync executor delisting logic
+INFO 2025-07-22 12:52:13,462 test_delisting_workflow   Testing delist action execution logic...
+DEBUG 2025-07-22 12:52:13,462 test_delisting_workflow     Testing delist action state mapping...
+DEBUG 2025-07-22 12:52:13,462 test_delisting_workflow       ✓ Reason 'transformed' maps to pack_state 'transformed'
+DEBUG 2025-07-22 12:52:13,462 test_delisting_workflow       ✓ Reason 'vanished' maps to pack_state 'delist'
+DEBUG 2025-07-22 12:52:13,462 test_delisting_workflow       ✓ Reason 'manual_delist' maps to pack_state 'delist'
+DEBUG 2025-07-22 12:52:13,462 test_delisting_workflow       ✓ Reason 'performance_disabled' maps to pack_state 'delist'
+INFO 2025-07-22 12:52:13,462 test_delisting_workflow   Sync executor delisting tests passed
+INFO 2025-07-22 12:52:13,462 test_delisting_workflow ✅ Sync executor test passed
+INFO 2025-07-22 12:52:13,462 test_delisting_workflow 
+📋 Test 4: Delete API integration
+INFO 2025-07-22 12:52:13,469 test_delisting_workflow   Testing delete API integration logic...
+DEBUG 2025-07-22 12:52:13,469 test_delisting_workflow     Graceful errors (treated as success): ['Inventory not found', '404 - Resource not found', 'Inventory does not exist', 'Already deleted']
+DEBUG 2025-07-22 12:52:13,469 test_delisting_workflow     Critical errors (cause failure): ['Network timeout error']
+INFO 2025-07-22 12:52:13,469 test_delisting_workflow   Delete API integration tests passed
+INFO 2025-07-22 12:52:13,469 test_delisting_workflow ✅ Delete API test passed
+INFO 2025-07-22 12:52:13,469 test_delisting_workflow 
+🏆 Test Summary:
+INFO 2025-07-22 12:52:13,469 test_delisting_workflow   Tests run: 4
+INFO 2025-07-22 12:52:13,469 test_delisting_workflow   Passed: 4
+INFO 2025-07-22 12:52:13,469 test_delisting_workflow   Failed: 0
+INFO 2025-07-22 12:52:13,469 test_delisting_workflow 🎉 All tests passed! POS delisting workflow is working correctly.
+ERROR 2025-07-24 14:46:33,755 factory Failed to get scraper definition by domain localhost:5174: You cannot call this from an async context - use a thread or sync_to_async.
+WARNING 2025-07-24 14:46:33,756 factory No scraper found for URL: http://localhost:5174/performance/3538
+INFO 2025-07-24 14:48:54,886 seat_pack_sync Starting seat pack diff: 0 existing, 2 new, POS enabled: True
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync 🔍 EXISTING PACKS:
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync 🔍 NEW PACKS:
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync   1. test_pack_1: A7-A11 (5 seats)
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync      Seats: ['A7', 'A8', 'A9', 'A10', 'A11']
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync   2. test_pack_2: A13-A18 (6 seats)
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync      Seats: ['A13', 'A14', 'A15', 'A16', 'A17', 'A18']
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync Built lookups: 0 existing, 2 new, 0 seat mappings
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync 🔍 PACK ID ANALYSIS:
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync    Existing IDs: set()
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync    New IDs: {'test_pack_2', 'test_pack_1'}
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync    Common IDs: set()
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync    Only in existing: set()
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync    Only in new: {'test_pack_1', 'test_pack_2'}
+INFO 2025-07-24 14:48:54,887 seat_pack_sync 🔄 SYNC PLAN: 0 identical, 0 functionally equivalent (preserved), 2 to create, 0 to delete, syncing all pending/failed to POS
+INFO 2025-07-24 14:48:54,887 seat_pack_sync ➕ Will create 2 new seat packs: ['test_pack_1', 'test_pack_2']
+INFO 2025-07-24 14:48:54,887 seat_pack_sync ✅ No packs scheduled for delisting
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync Built correlation maps: 2 new->sources, 0 sources->children
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync New pack test_pack_1: create from 0 sources
+DEBUG 2025-07-24 14:48:54,887 seat_pack_sync New pack test_pack_2: create from 0 sources
+INFO 2025-07-24 14:48:54,887 seat_pack_sync 🎯 SYNC PLAN COMPLETE:
+INFO 2025-07-24 14:48:54,887 seat_pack_sync   ✅ 0 existing packs preserved
+INFO 2025-07-24 14:48:54,887 seat_pack_sync   ➕ 2 create actions
+INFO 2025-07-24 14:48:54,887 seat_pack_sync   📝 0 update actions
+INFO 2025-07-24 14:48:54,887 seat_pack_sync   🗑️ 0 delist actions
+INFO 2025-07-24 14:48:54,887 seat_pack_sync   🔄 0 sync actions (pushing to POS)
+INFO 2025-07-24 14:51:02,917 seat_pack_sync Starting seat pack diff: 1 existing, 2 new, POS enabled: True
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync 🔍 EXISTING PACKS:
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync   1. original_pack_a7_a18: A7-A18 (12 seats)
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync      Seats: ['A7', 'A8', 'A9', 'A10', 'A11', 'A12', 'A13', 'A14', 'A15', 'A16', 'A17', 'A18']
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync 🔍 NEW PACKS:
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync   1. split_pack_a7_a11: A7-A11 (5 seats)
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync      Seats: ['A7', 'A8', 'A9', 'A10', 'A11']
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync   2. split_pack_a13_a18: A13-A18 (6 seats)
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync      Seats: ['A13', 'A14', 'A15', 'A16', 'A17', 'A18']
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync Built lookups: 1 existing, 2 new, 12 seat mappings
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync 🔍 PACK ID ANALYSIS:
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    Existing IDs: {'original_pack_a7_a18'}
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    New IDs: {'split_pack_a7_a11', 'split_pack_a13_a18'}
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    Common IDs: set()
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    Only in existing: {'original_pack_a7_a18'}
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    Only in new: {'split_pack_a7_a11', 'split_pack_a13_a18'}
+INFO 2025-07-24 14:51:02,918 seat_pack_sync 🔄 SYNC PLAN: 0 identical, 0 functionally equivalent (preserved), 2 to create, 1 to delete, syncing all pending/failed to POS
+INFO 2025-07-24 14:51:02,918 seat_pack_sync ➕ Will create 2 new seat packs: ['split_pack_a7_a11', 'split_pack_a13_a18']
+INFO 2025-07-24 14:51:02,918 seat_pack_sync 🗑️ Will delete 1 packs: ['original_pack_a7_a18']
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync Built correlation maps: 2 new->sources, 1 sources->children
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync 🔬 Pack split_pack_a7_a11 analysis:
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    Source: original_pack_a7_a18
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    Children count: 2
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    Action type: split
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    All children: ['split_pack_a7_a11', 'split_pack_a13_a18']
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync New pack split_pack_a7_a11: split from 1 sources
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync 🔬 Pack split_pack_a13_a18 analysis:
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    Source: original_pack_a7_a18
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    Children count: 2
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    Action type: split
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync    All children: ['split_pack_a7_a11', 'split_pack_a13_a18']
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync New pack split_pack_a13_a18: split from 1 sources
+DEBUG 2025-07-24 14:51:02,918 seat_pack_sync Delisting pack original_pack_a7_a18: transformed
+INFO 2025-07-24 14:51:02,918 seat_pack_sync 🎯 SYNC PLAN COMPLETE:
+INFO 2025-07-24 14:51:02,918 seat_pack_sync   ✅ 0 existing packs preserved
+INFO 2025-07-24 14:51:02,919 seat_pack_sync   ➕ 2 create actions
+INFO 2025-07-24 14:51:02,919 seat_pack_sync   📝 0 update actions
+INFO 2025-07-24 14:51:02,919 seat_pack_sync   🗑️ 1 delist actions
+INFO 2025-07-24 14:51:02,919 seat_pack_sync   🔄 0 sync actions (pushing to POS)
+ERROR 2025-07-30 15:35:37,318 register_existing_scrapers Failed to process scraper 'Broadway SF Scraper': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-30 15:35:37,321 register_existing_scrapers Failed to process scraper 'David H. Koch Theater Scraper': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-30 15:35:37,321 register_existing_scrapers Failed to process scraper 'Washington Pavilion Scraper': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-30 15:35:37,322 register_existing_scrapers Failed to process scraper 'VividSeats Scraper': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-30 15:35:37,322 register_existing_scrapers Failed to process scraper 'TPAC Scraper': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-30 15:35:37,323 register_existing_scrapers Failed to process scraper 'Demo Scraper': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-30 15:35:37,323 register_existing_scrapers Failed to process scraper 'Broadway in Detroit Scraper': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-30 15:35:37,324 register_existing_scrapers Failed to process scraper 'Saenger NOLA Scraper': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-30 15:35:37,324 register_existing_scrapers Failed to process scraper 'Kings Theatre Brooklyn Scraper': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
+ERROR 2025-07-30 15:35:37,325 register_existing_scrapers Failed to process scraper 'Colorado Ballet Scraper': could not translate host name "django-postgres" to address: Temporary failure in name resolution
+
