@@ -1,0 +1,1 @@
+# VividSeats scraper implementation
